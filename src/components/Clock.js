@@ -18,7 +18,31 @@ class Clock extends Component {
     getTimeRemaining(birthday) {
 
         var bday = new Date(birthday);
-        let today = new Date();
+        var today = new Date();
+
+        const currentMonth = today.getMonth();
+        const birthMonth = bday.getMonth();
+
+        if(birthMonth > currentMonth) {
+            //1. month is AFTER the current month
+            bday.setFullYear(today.getFullYear());
+        } 
+        else if (birthMonth < currentMonth) {
+            //2. month is B4 the current month
+            bday.setFullYear(today.getFullYear() + 1);
+        }
+        else if(birthMonth == currentMonth) {
+            const birthDay = bday.getDate();
+            const currentDay = today.getDate();
+            if(birthDay > currentDay) {
+                //1. day is AFTER the current day
+                bday.setFullYear(today.getFullYear());
+            } 
+            else if (birthDay < currentDay) {
+                //2. day is B4 the current day
+                bday.setFullYear(today.getFullYear() + 1);
+            }
+        }
 
         var distance = bday.getTime() - today.getTime();
 
@@ -38,6 +62,7 @@ class Clock extends Component {
     getAge = function() {
         var bday = new Date(this.birthday);
         let today = new Date();
+
         var distance = today.getTime() - bday.getTime();
         var daysOld = Math.floor(distance / (1000 * 60 * 60 * 24));
         var yearsOld = Number((daysOld/365).toFixed(0));

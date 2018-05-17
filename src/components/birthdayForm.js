@@ -21,7 +21,7 @@ class BirthdayForm extends Component {
     handleChange(date) {
         this.setState({
             startDate: date
-        })
+        });
     }
 
     handleGenerate() {

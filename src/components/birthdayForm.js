@@ -31,7 +31,9 @@ class BirthdayForm extends Component {
     }
 
     handleChangeDate() {
-
+        this.setState({
+            formCompleted: false
+        })
     }
 
     render() {
